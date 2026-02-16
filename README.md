@@ -10,13 +10,14 @@ A modern, conversational AI-powered email assistant built with FastAPI, LangChai
 - **Automatic Email Signature**: Adds "Best regards, [Your Name]" automatically
 - **LangChain Agent**: Intelligent email parameter extraction
 - **Groq LLM**: Fast, powerful language model
+- **MCP Support**: Uses Model Context Protocol (MCP) in the workflow
 - **Modern UI**: Beautiful gradient design with smooth animations
 - **Real-time Processing**: Instant AI responses with typing indicators
 
 ## 🏗️ Project Structure
 
 ```
-MCP/
+AI_EMAIL_WRITER/
 ├── src/                    # Source code directory
 │   ├── __init__.py        # Package initialization
 │   ├── config.py          # Configuration management
@@ -138,6 +139,7 @@ curl -X POST "http://127.0.0.1:8000/chat" \
 
 - **Backend**: FastAPI, Python 3.x
 - **AI/ML**: LangChain, Groq LLM
+- **Protocol**: MCP (Model Context Protocol)
 - **Email**: SMTP (Gmail)
 - **Frontend**: Vanilla HTML/CSS/JavaScript
 - **Styling**: Modern gradient design with Inter font
@@ -181,10 +183,6 @@ allow_origins=["https://yourdomain.com"]  # Replace "*" with specific domains
 - Check all dependencies are installed
 - Review console logs for detailed errors
 
-## 📄 License
 
-This project is open source and available for personal and educational use.
 
----
-
-**Built with ❤️ using FastAPI, LangChain, and Groq, and mcp**
+**Built with FastAPI, LangChain, Groq, and MCP (Model Context Protocol)**
