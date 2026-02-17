@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email AI Assistent</title>
+    <title>Email AI Assistant - With Attachments</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -25,7 +25,7 @@
                     <h1>DebAI – Email Assistant</h1>
                     <div class="status">
                         <span class="status-dot"></span>
-                        <span class="status-text">AI Ready</span>
+                        <span class="status-text">AI Ready • Attachments Enabled</span>
                     </div>
                 </div>
             </div>
@@ -51,19 +51,40 @@
                     </svg>
                 </div>
                 <h2>Hi! I'm DebAI.</h2>
-                <p>I can help you write and send emails. Just tell me what you need.</p>
+                <p>I can help you write and send emails with attachments. Just tell me what you need.</p>
                 <div class="suggestions">
                     <button class="suggestion-chip">Send an email to HR about sick leave</button>
-                    <button class="suggestion-chip">Write a follow-up to client</button>
+                    <button class="suggestion-chip">Write a follow-up to client with report</button>
                 </div>
             </div>
             <!-- Messages will appear here -->
         </main>
 
+        <!-- Attachments Preview Area -->
+        <div class="attachments-area" id="attachments-area" style="display: none;">
+            <div class="attachments-header">
+                <span class="attachments-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                    </svg>
+                    Attachments
+                </span>
+            </div>
+            <div class="attachments-list" id="attachments-list">
+                <!-- Attachment chips will be added here -->
+            </div>
+        </div>
+
         <!-- Input Area -->
         <footer class="input-area">
             <div class="input-container">
-                <textarea id="chat-input" placeholder="Type your message like: Send an email to boss@gmail.com..."
+                <button class="attach-btn" id="attach-btn" title="Attach File">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                    </svg>
+                </button>
+                <textarea id="chat-input" placeholder="Type your message like: Send an email to boss@gmail.com with the attached report..."
                     rows="1"></textarea>
                 <button id="send-btn" disabled>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -73,7 +94,8 @@
                     </svg>
                 </button>
             </div>
-            <div class="footer-note">AI can make mistakes. Please check important info.</div>
+            <input type="file" id="file-input" style="display: none;" multiple />
+            <div class="footer-note">AI can make mistakes. Please check important info. Max 25MB per file.</div>
         </footer>
     </div>
     <script src="script.js"></script>
