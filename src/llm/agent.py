@@ -297,7 +297,7 @@ def send_email_to_employees(name_or_role: str, subject: str, message: str) -> st
         return f"Error sending email: {str(e)}"
 
 
-SYSTEM_PROMPT = """You are DebAI, a professional AI email assistant with DIRECT ACCESS to a MongoDB employee database.
+SYSTEM_PROMPT = """You are DataCrew AI, a professional AI email assistant with DIRECT ACCESS to a MongoDB employee database.
 
 ## IMPORTANT - ALWAYS USE TOOLS
 

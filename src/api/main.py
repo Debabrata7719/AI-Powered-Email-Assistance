@@ -1,7 +1,7 @@
 """
 FastAPI Application
 
-Main entry point for the DebAI Email Assistant API.
+Main entry point for the DataCrew AI Email Assistant API.
 """
 
 from fastapi import FastAPI
@@ -13,7 +13,7 @@ from src.config import GROQ_API_KEY, EMAIL_ADDRESS
 from src.api.endpoints import chat, files, memory
 
 app = FastAPI(
-    title="DebAI - Email Assistant API",
+    title="DataCrew AI - Email Assistant API",
     description="AI-powered email assistant with document generation",
     version="4.0.0",
 )
@@ -39,7 +39,7 @@ GENERATED_DIR.mkdir(exist_ok=True)
 @app.get("/")
 async def root():
     return {
-        "message": "DebAI Email Assistant API",
+        "message": "DataCrew AI Email Assistant API",
         "version": "4.0.0",
         "status": "active",
         "features": [
@@ -68,7 +68,7 @@ app.mount("/app", StaticFiles(directory="frontend", html=True), name="frontend")
 if __name__ == "__main__":
     import uvicorn
 
-    print("DebAI Email Assistant API v4.0.0")
+    print("DataCrew AI Email Assistant API v4.0.0")
     print("Frontend: http://127.0.0.1:8000/app/")
     print("API docs: http://127.0.0.1:8000/docs")
     uvicorn.run(app, host="127.0.0.1", port=8000)

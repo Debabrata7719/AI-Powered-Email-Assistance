@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo   DebAI - Email Assistant Launcher
+echo   DataCrew AI - Email Assistant Launcher
 echo ========================================
 echo.
 
@@ -22,7 +22,7 @@ if %errorlevel% neq 0 (
 )
 echo.
 
-echo [3/3] Starting DebAI Server...
+echo [3/3] Starting DataCrew AI Server...
 echo.
 echo ========================================
 echo   Server will start on:

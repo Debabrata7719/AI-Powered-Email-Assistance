@@ -9,7 +9,7 @@ from src.mcp.tools.email import mcp as email_mcp
 from src.mcp.tools.employee import mcp as employee_mcp
 from src.mcp.tools.document import mcp as document_mcp
 
-mcp = FastMCP("DebAI Tools")
+mcp = FastMCP("DataCrew AI Tools")
 
 from src.mcp.tools.email import send_email, send_email_direct
 from src.mcp.tools.employee import lookup_employee, list_employees, get_employee_emails

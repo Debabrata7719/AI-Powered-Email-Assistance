@@ -1,4 +1,4 @@
-# DebAI - AI Email Assistant 📧
+# DataCrew AI - AI Email Assistant 📧
 
 A modern, conversational AI-powered email assistant built with FastAPI, LangChain, and Groq LLM. Features a beautiful chat-style interface for sending emails through natural language with automatic email signatures, employee database management, and document generation.
 
