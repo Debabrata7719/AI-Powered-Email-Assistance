@@ -421,20 +421,23 @@ def add_employee_to_database(natural_language_text: str) -> str:
 
     if not job_type:
         job_type_patterns = [
-            r"job[_-]?type(?:\s+is)?[:\s]+([a-zA-Z]+)",
-            r"\bas\s+([a-zA-Z]+)",
-            r"\brole(?:\s+is)?[:\s]+([a-zA-Z]+)",
+            r"job[_-]?type(?:\s+is)?[:\s]+([a-zA-Z]+(?:\s+[a-zA-Z]+){0,2})",
+            r"\bas\s+([a-zA-Z]+(?:\s+[a-zA-Z]+){0,2})",
+            r"\brole(?:\s+is)?[:\s]+([a-zA-Z]+(?:\s+[a-zA-Z]+){0,2})",
         ]
         for pattern in job_type_patterns:
             job_match = re.search(pattern, text, re.IGNORECASE)
             if job_match:
                 job_type = job_match.group(1).strip()
+                words = job_type.lower().split()
+                stop_words = ["email", "phone", "id", "number"]
+                filtered_words = []
+                for word in words:
+                    if word in stop_words:
+                        break
+                    filtered_words.append(word)
+                job_type = " ".join(filtered_words) if filtered_words else None
                 if job_type and job_type.lower() not in ["email", "phone"]:
-                    break
-            if job_match:
-                job_type = job_match.group(1).strip()
-                name_lower = name.lower() if name else ""
-                if job_type and len(job_type) >= 2 and job_type.lower() != name_lower:
                     break
 
     if not name:
