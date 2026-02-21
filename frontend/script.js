@@ -333,8 +333,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function sendMessageToBackend(userMessage) {
+        const endpoint = await determineEndpoint(userMessage);
+        const url = `http://127.0.0.1:8000${endpoint}`;
+        
         try {
-            const response = await fetch("http://127.0.0.1:8000/chat", {
+            const response = await fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
@@ -346,6 +349,57 @@ document.addEventListener('DOMContentLoaded', () => {
             return data;
         } catch (error) {
             throw error;
+        }
+    }
+
+    async function determineEndpoint(message) {
+        const msg = message.toLowerCase();
+        
+        // Quick keyword pre-check as primary method
+        const employeeKeywords = [
+            "add employee", "add a employee", "add new employee", "adding employee",
+            "store employee", "store a employee", "storing employee",
+            "insert employee", "inserting employee",
+            "update employee", "updating employee",
+            "delete employee", "deleting employee", "remove employee",
+            "list employees", "show employees", "search employee", "find employee",
+            "employee database", "employee data",
+            "who is", "who are",
+            "job role", "phone number", "email id",
+            // Common typos/variations
+            "ad a employee", "ad employee", "adding a employee",
+        ];
+        
+        for (const keyword of employeeKeywords) {
+            if (msg.includes(keyword)) {
+                return "/chat/employee";
+            }
+        }
+        
+        // Check for email-related keywords
+        const emailKeywords = [
+            "send email", "send mail", "send an email",
+            "compose email", "write email", "email to",
+        ];
+        
+        for (const keyword of emailKeywords) {
+            if (msg.includes(keyword)) {
+                return "/chat/email";
+            }
+        }
+        
+        // Fallback to LLM routing
+        try {
+            const response = await fetch("http://127.0.0.1:8000/chat/route", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            });
+            const data = await response.json();
+            return data.endpoint;
+        } catch (error) {
+            console.error("Routing error, defaulting to email:", error);
+            return "/chat/email";
         }
     }
 });
